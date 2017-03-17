@@ -27,16 +27,19 @@ end
  end
  def update
 
-    if @group.update(group_params)
+  if @group.update(group_params)
       redirect_to groups_path, notice: "Update Success"
     else
       render :edit
     end
+
  end
  def destroy
 
-   @group.destroy
-    redirect_to groups_paths,alert: "Group deleted"
+   @group = Group.find(params[:id])
+    @group.destroy
+   flash[:alert] = "Group deleted"
+    redirect_to groups_path
 
   end
   def join
